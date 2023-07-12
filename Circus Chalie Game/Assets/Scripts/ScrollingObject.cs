@@ -9,7 +9,7 @@ public class ScrollingObject : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
