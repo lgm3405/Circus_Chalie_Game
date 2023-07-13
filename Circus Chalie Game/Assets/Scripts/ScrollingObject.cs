@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class ScrollingObject : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = default;
+
+    private bool isDead = false;
 
     void Start()
     {
@@ -14,9 +16,18 @@ public class ScrollingObject : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.isGameOver == false)
+        if (isDead) { return; }
+        else
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            float xInput = Input.GetAxis("Horizontal");
+            float zInput = Input.GetAxis("Vertical");
+
+            float xSpeed = xInput * speed * Time.deltaTime;
+            float zSpeed = zInput * speed * Time.deltaTime;
+
+            Vector3 newvelocity = new Vector3(xSpeed, 0f, zSpeed);
+
+            transform.Translate(Vector3.right * -xSpeed);
         }
     }
 }

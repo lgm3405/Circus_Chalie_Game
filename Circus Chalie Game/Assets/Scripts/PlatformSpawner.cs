@@ -5,33 +5,18 @@ using UnityEngine;
 
 public class PlatformSpawner : MonoBehaviour
 {
-    public GameObject BackGroundPrefab;
-    public int count = 3;
+    public GameObject Fire_Ring_BigPrefab;
 
-    public float timeBetSpawnMin = 2.5f;
-    public float timeBetSpawnMax = 4.5f;
-    private float timeBetSpawn;
-
-    public float yMin = -3.5f;
-    public float yMax = 1.5f;
-    private float xPos = 20f;
-
-    private GameObject[] platforms;
-    private int currentIndex = 0;
-    private Vector2 poolPosition = new Vector2(0, -25f);
-    private float lastSpawnTime;
+    private GameObject spawner;
+    private float SpawnTime = default;
+    private float SpawnCoolTime = 4f;
+    private float yPos = 0;
+    private float xPos = 5f;
+    private Vector2 poolPosition = new Vector2(0, -5f);
 
     void Start()
     {
-        platforms = new GameObject[count];
-
-        for (int i = 0; i < count; i++)
-        {
-            platforms[i] = Instantiate(BackGroundPrefab, poolPosition, Quaternion.identity);
-        }
-
-        lastSpawnTime = 0f;
-        timeBetSpawn = 0f;
+        
     }
 
     void Update()
@@ -41,22 +26,12 @@ public class PlatformSpawner : MonoBehaviour
             return;
         }
 
-        if (lastSpawnTime + timeBetSpawn <= Time.time)
+        SpawnTime += Time.deltaTime;
+        if (SpawnTime >= SpawnCoolTime)
         {
-            lastSpawnTime = Time.time;
-            timeBetSpawn = Random.Range(timeBetSpawnMin, timeBetSpawnMax);
-
-            float yPos = Random.Range(yMin, yMax);
-            platforms[currentIndex].SetActive(false);
-            platforms[currentIndex].SetActive(true);
-
-            platforms[currentIndex].transform.position = new Vector2(xPos, yPos);
-            currentIndex += 1;
-
-            if (count <= currentIndex)
-            {
-                currentIndex = 0;
-            }
+            GameObject fire_ring_big = Instantiate(Fire_Ring_BigPrefab, transform.position, transform.rotation);
+            Destroy(fire_ring_big.gameObject, 10f);
+            SpawnTime = 0;
         }
     }
 }

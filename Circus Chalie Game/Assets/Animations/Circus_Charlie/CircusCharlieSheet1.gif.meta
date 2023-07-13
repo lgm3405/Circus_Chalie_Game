@@ -1263,7 +1263,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fire_Ring_1
+      name: Fire_Ring_Small_1
       rect:
         serializedVersion: 2
         x: 81
@@ -1284,7 +1284,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fire_Ring_2
+      name: Fire_Ring_Small_2
       rect:
         serializedVersion: 2
         x: 109
@@ -1305,12 +1305,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CircusCharlieSheet1_56
+      name: Fire_Ring_Big_1_Left
       rect:
         serializedVersion: 2
         x: 136
         y: 127
-        width: 24
+        width: 12
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -1326,12 +1326,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CircusCharlieSheet1_57
+      name: Fire_Ring_Big_2_Left
       rect:
         serializedVersion: 2
         x: 165
         y: 127
-        width: 24
+        width: 12
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -1473,13 +1473,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CircusCharlieSheet1_64
+      name: Fire_Ring_Big_1_Right
       rect:
         serializedVersion: 2
-        x: 5
-        y: 25
-        width: 47
-        height: 32
+        x: 148
+        y: 127
+        width: 12
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1599,13 +1599,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CircusCharlieSheet1_70
+      name: Fire_Ring_Big_2_Right
       rect:
         serializedVersion: 2
-        x: 56
-        y: 25
-        width: 45
-        height: 31
+        x: 177
+        y: 127
+        width: 12
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1724,48 +1724,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: CircusCharlieSheet1_0
-      rect:
-        serializedVersion: 2
-        x: 244
-        y: 271
-        width: 17
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3fd2b7b57b0c88e4ebd4323c0abd6c25
-      internalID: -1444850074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CircusCharlieSheet1_1
-      rect:
-        serializedVersion: 2
-        x: 297
-        y: 234
-        width: 19
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2785325e43f165a4fbe3ff073c54eaed
-      internalID: -459003450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1831,25 +1789,25 @@ TextureImporter:
       CircusCharlieSheet1_51: -1960559812
       CircusCharlieSheet1_52: 2100251981
       CircusCharlieSheet1_53: 1924656986
-      CircusCharlieSheet1_56: 222598334
-      CircusCharlieSheet1_57: -146364349
       CircusCharlieSheet1_60: 1542604488
       CircusCharlieSheet1_61: -1787143308
       CircusCharlieSheet1_62: -1411917960
-      CircusCharlieSheet1_64: -1497316263
       CircusCharlieSheet1_65: 1027947980
       CircusCharlieSheet1_66: -311116384
       CircusCharlieSheet1_67: 941843988
       CircusCharlieSheet1_68: 1880219451
       CircusCharlieSheet1_69: -1943037806
-      CircusCharlieSheet1_70: 1811841024
       CircusCharlieSheet1_71: 843868538
       CircusCharlieSheet1_72: 2132854897
       CircusCharlieSheet1_73: 2094348284
       CircusCharlieSheet1_74: -1673132228
       CircusCharlieSheet1_75: -1178742049
-      Fire_Ring_1: -781299238
-      Fire_Ring_2: 1673674988
+      Fire_Ring_Big_1_Left: 222598334
+      Fire_Ring_Big_1_Right: -1497316263
+      Fire_Ring_Big_2_Left: -146364349
+      Fire_Ring_Big_2_Right: 1811841024
+      Fire_Ring_Small_1: -781299238
+      Fire_Ring_Small_2: 1673674988
       Lion_Hit: 2016118060
       Lion_Jump: 1602632485
       Lion_Walk_1: -948710923
