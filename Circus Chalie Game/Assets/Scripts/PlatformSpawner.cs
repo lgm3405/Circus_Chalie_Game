@@ -6,13 +6,11 @@ using UnityEngine;
 public class PlatformSpawner : MonoBehaviour
 {
     public GameObject Fire_Ring_BigPrefab;
+    public GameObject Fire_Ring_SmallPrefab;
 
-    private GameObject spawner;
     private float SpawnTime = default;
     private float SpawnCoolTime = 4f;
-    private float yPos = 0;
-    private float xPos = 5f;
-    private Vector2 poolPosition = new Vector2(0, -5f);
+    private int fire_type;
 
     void Start()
     {
@@ -29,8 +27,18 @@ public class PlatformSpawner : MonoBehaviour
         SpawnTime += Time.deltaTime;
         if (SpawnTime >= SpawnCoolTime)
         {
-            GameObject fire_ring_big = Instantiate(Fire_Ring_BigPrefab, transform.position, transform.rotation);
-            Destroy(fire_ring_big.gameObject, 10f);
+            fire_type = Random.Range(0, 100);
+            if (fire_type < 40)
+            {
+                GameObject fire_ring_small = Instantiate(Fire_Ring_SmallPrefab, transform.position, transform.rotation);
+                Destroy(fire_ring_small.gameObject, 10f);
+            }
+            else
+            {
+                GameObject fire_ring_big = Instantiate(Fire_Ring_BigPrefab, transform.position, transform.rotation);
+                Destroy(fire_ring_big.gameObject, 10f);
+            }
+            
             SpawnTime = 0;
         }
     }

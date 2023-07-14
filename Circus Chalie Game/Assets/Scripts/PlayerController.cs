@@ -8,9 +8,6 @@ public class PlayerController : MonoBehaviour
     public float speed = default;
 
     private int jumpCount = 0;
-    private bool isGrounded = false;
-    private bool isDead = false;
-
     private Rigidbody2D playerRigid = default;
 
     void Start()
@@ -20,6 +17,8 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (GameManager.instance.isDead) { return; }
+
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 1)
         {
             if (jumpCount < 1)
@@ -32,25 +31,41 @@ public class PlayerController : MonoBehaviour
             {
                 playerRigid.velocity = playerRigid.velocity * 0.5f;
             }
-
-            LionAnimation lionanimation_ = new LionAnimation();
-            lionanimation_.LionJumpBool();
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag.Equals("Hit") && GameManager.instance.isDead == false)
+        {
+            Die();
+            Debug.Log("È÷Æ®");
+        }
+        if (collision.tag.Equals("Coin") && GameManager.instance.isDead == false)
+        {
+            //GameManager.instance.AddCoin(1);
+            collision.gameObject.SetActive(false);
+        }
+    }
+
+    private void Die()
+    {
+        playerRigid.velocity = Vector2.zero;
+        GameManager.instance.isDead = true;
+        GameManager.instance.OnPlayerDead();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (0.7f < collision.contacts[0].normal.y)
         {
+            GameManager.instance.isGrounded = true;
             jumpCount = 0;
-            LionAnimation lionanimation_ = new LionAnimation();
-            lionanimation_.LionEnterCheck(isGrounded = true);
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        LionAnimation lionanimation_ = new LionAnimation();
-        lionanimation_.LionEnterCheck(isGrounded = false);
+        GameManager.instance.isGrounded = false;
     }
 }

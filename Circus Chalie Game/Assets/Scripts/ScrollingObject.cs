@@ -7,8 +7,6 @@ public class ScrollingObject : MonoBehaviour
 {
     public float speed = default;
 
-    private bool isDead = false;
-
     void Start()
     {
 
@@ -16,17 +14,15 @@ public class ScrollingObject : MonoBehaviour
 
     void Update()
     {
-        if (isDead) { return; }
+        if (GameManager.instance.isDead) { return; }
+
         else
         {
             float xInput = Input.GetAxis("Horizontal");
             float zInput = Input.GetAxis("Vertical");
-
             float xSpeed = xInput * speed * Time.deltaTime;
             float zSpeed = zInput * speed * Time.deltaTime;
-
             Vector3 newvelocity = new Vector3(xSpeed, 0f, zSpeed);
-
             transform.Translate(Vector3.right * -xSpeed);
         }
     }

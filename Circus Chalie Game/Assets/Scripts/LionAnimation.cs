@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LionAnimation : MonoBehaviour
 {
-    private bool isGrounded = false;
     private Animator animator = default;
 
     void Start()
@@ -15,17 +14,6 @@ public class LionAnimation : MonoBehaviour
 
     void Update()
     {
-        
+        animator.SetBool("Grounded", GameManager.instance.isGrounded);
     }
-
-    public void LionJumpBool()
-    {
-        animator.SetBool("Grounded", isGrounded);
-    }
-
-    public void LionEnterCheck(bool isGrounded)
-    {
-
-    }
-
 }
