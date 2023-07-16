@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LionAnimation : MonoBehaviour
+public class CharlieAnimation : MonoBehaviour
 {
     private Animator animator = default;
 
@@ -14,8 +14,6 @@ public class LionAnimation : MonoBehaviour
 
     void Update()
     {
-        animator.SetBool("Grounded", GameManager.instance.isGrounded);
-
         if (GameManager.instance.isDead == true)
         {
             animator.SetTrigger("Die");

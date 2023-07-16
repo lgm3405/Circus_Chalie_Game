@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float jumpForce = 300f;
+    public float jumpForce = 270f;
     public float speed = default;
+    public AudioClip DeathClip;
 
     private int jumpCount = 0;
     private Rigidbody2D playerRigid = default;
+    private AudioSource playerAudio = default;
 
     void Start()
     {
         playerRigid = GetComponent<Rigidbody2D>();
+        playerAudio = GetComponent<AudioSource>();
         Debug.Assert(playerRigid != null);
+        Debug.Assert(playerAudio != null);
     }
     void Update()
     {
@@ -26,6 +30,7 @@ public class PlayerController : MonoBehaviour
                 jumpCount += 1;
                 playerRigid.velocity = Vector2.zero;
                 playerRigid.AddForce(new Vector2(0, jumpForce));
+                playerAudio.Play();
             }
             else if (Input.GetKeyDown(KeyCode.Space) && 0 < playerRigid.velocity.y)
             {
@@ -39,19 +44,24 @@ public class PlayerController : MonoBehaviour
         if (collision.tag.Equals("Hit") && GameManager.instance.isDead == false)
         {
             Die();
-            Debug.Log("È÷Æ®");
         }
-        if (collision.tag.Equals("Coin") && GameManager.instance.isDead == false)
+        if (collision.tag.Equals("Bonus") && GameManager.instance.isDead == false)
         {
-            //GameManager.instance.AddCoin(1);
+            GameManager.instance.AddBonus(200);
             collision.gameObject.SetActive(false);
+            GameManager.instance.BonusSound();
+
+        }
+        if (collision.tag.Equals("Score") && GameManager.instance.isDead == false)
+        {
+            GameManager.instance.AddScore(100);
         }
     }
 
     private void Die()
     {
-        playerRigid.velocity = Vector2.zero;
         GameManager.instance.isDead = true;
+        playerRigid.velocity = Vector2.zero;
         GameManager.instance.OnPlayerDead();
     }
 

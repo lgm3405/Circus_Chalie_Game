@@ -26,12 +26,12 @@ public class BackGroundLoop : MonoBehaviour
         {
             if (GameManager.instance.max_loop == true) { return; }
 
-            if (GameManager.instance.loop_count < 1)
+            if (GameManager.instance.loop_count < 5)
             {
                 GameManager.instance.loop_count += 1;
                 Reposition();
             }
-            else if (GameManager.instance.loop_count >= 1)
+            else if (GameManager.instance.loop_count >= 5)
             {
                 GameManager.instance.max_loop = true;
                 LastPosition();
@@ -44,12 +44,10 @@ public class BackGroundLoop : MonoBehaviour
     {
         Vector2 offset = new Vector2((width * 6f) - 0.02f, 0);
         transform.position = transform.position.AddVector(offset);
-        Debug.LogFormat("현재 loop_count는 : {0}", GameManager.instance.loop_count);
     }
 
     private void LastPosition()
     {
-        Debug.Log("작동중이다");
         Vector2 offset = new Vector2((width * 3.5f) - 0.03f, +0.02f);
         GameObject finish_back_ground = Instantiate(FinishBackGroundPrefab, offset, transform.rotation);
     }
