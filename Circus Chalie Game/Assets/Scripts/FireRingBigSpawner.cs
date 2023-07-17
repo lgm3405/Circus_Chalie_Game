@@ -8,7 +8,6 @@ public class FireRingBigSpawner : MonoBehaviour
     public GameObject Fire_Ring_BigPrefab;
 
     private float SpawnTime = default;
-    private float SpawnCoolTime = 3f;
 
     void Start()
     { 
@@ -23,12 +22,12 @@ public class FireRingBigSpawner : MonoBehaviour
         }
 
         SpawnTime += Time.deltaTime;
-        if (SpawnTime >= SpawnCoolTime)
+        if (SpawnTime >= GameManager.instance.spawn_cooltime)
         {
             GameManager.instance.FireType();
             if (GameManager.instance.fire_type_check == true)
             {
-                if (GameManager.instance.fire_type > 40)
+                if (GameManager.instance.fire_type > 30)
                 {
                     GameObject fire_ring_big = Instantiate(Fire_Ring_BigPrefab, transform.position, transform.rotation);
                     Destroy(fire_ring_big.gameObject, 10f);

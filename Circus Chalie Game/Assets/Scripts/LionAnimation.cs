@@ -15,7 +15,6 @@ public class LionAnimation : MonoBehaviour
     void Update()
     {
         animator.SetBool("Grounded", GameManager.instance.isGrounded);
-
         if (GameManager.instance.isDead == true)
         {
             animator.SetTrigger("Die");

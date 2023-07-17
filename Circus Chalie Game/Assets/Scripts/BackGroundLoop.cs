@@ -26,15 +26,20 @@ public class BackGroundLoop : MonoBehaviour
         {
             if (GameManager.instance.max_loop == true) { return; }
 
-            if (GameManager.instance.loop_count < 5)
+            if (GameManager.instance.loop_count < 1)
             {
                 GameManager.instance.loop_count += 1;
+                LoopCheck();
                 Reposition();
             }
-            else if (GameManager.instance.loop_count >= 5)
+            else if (GameManager.instance.loop_count >= 1)
             {
-                GameManager.instance.max_loop = true;
-                LastPosition();
+                if (GameManager.instance.max_loop == true) { return; }
+                else
+                {
+                    GameManager.instance.max_loop = true;
+                    LastPosition();
+                }
             }
         }
     }
@@ -48,7 +53,21 @@ public class BackGroundLoop : MonoBehaviour
 
     private void LastPosition()
     {
-        Vector2 offset = new Vector2((width * 3.5f) - 0.03f, +0.02f);
+        Vector2 offset = new Vector2((width * 3.5f) - 0.03f, -0.69f);
         GameObject finish_back_ground = Instantiate(FinishBackGroundPrefab, offset, transform.rotation);
+    }
+
+    private void LoopCheck()
+    {
+        if (GameManager.instance.loop_count == 2 && GameManager.instance.step != 2)
+        {
+            GameManager.instance.step = 2;
+            GameManager.instance.spawn_cooltime = 2.5f;
+        }
+        if (GameManager.instance.loop_count == 4 && GameManager.instance.step != 3)
+        {
+            GameManager.instance.step = 3;
+            GameManager.instance.spawn_cooltime = 2f;
+        }
     }
 }

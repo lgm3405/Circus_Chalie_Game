@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip DeathClip;
     public float jumpForce = 270f;
     public float speed = default;
-    public AudioClip DeathClip;
 
-    private int jumpCount = 0;
     private Rigidbody2D playerRigid = default;
     private AudioSource playerAudio = default;
+    private int jumpCount = 0;
 
     void Start()
     {
@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (GameManager.instance.isDead) { return; }
-
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 1)
         {
             if (jumpCount < 1)
@@ -41,20 +40,23 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag.Equals("Hit") && GameManager.instance.isDead == false)
+        if (collision.tag.Equals("Hit") && GameManager.instance.isDead == false && GameManager.instance.isGameClear == false)
         {
             Die();
         }
-        if (collision.tag.Equals("Bonus") && GameManager.instance.isDead == false)
+        if (collision.tag.Equals("Bonus") && GameManager.instance.isDead == false && GameManager.instance.isGameClear == false)
         {
             GameManager.instance.AddBonus(200);
             collision.gameObject.SetActive(false);
             GameManager.instance.BonusSound();
-
         }
-        if (collision.tag.Equals("Score") && GameManager.instance.isDead == false)
+        if (collision.tag.Equals("Score") && GameManager.instance.isDead == false && GameManager.instance.isGameClear == false)
         {
             GameManager.instance.AddScore(100);
+        }
+        if (collision.tag.Equals("Finish") && GameManager.instance.isDead == false)
+        {
+            Clear();
         }
     }
 
@@ -63,6 +65,13 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.isDead = true;
         playerRigid.velocity = Vector2.zero;
         GameManager.instance.OnPlayerDead();
+    }
+
+    private void Clear()
+    {
+        GameManager.instance.isGameClear = true;
+        playerRigid.velocity = Vector2.zero;
+        GameManager.instance.OnPlayerClear();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

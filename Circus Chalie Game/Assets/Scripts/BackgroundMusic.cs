@@ -18,5 +18,9 @@ public class BackgroundMusic : MonoBehaviour
         {
             GetComponent<AudioSource>().Stop();
         }
+        if (GameManager.instance.isGameClear == true)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
     }
 }

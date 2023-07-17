@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class ScrollingObject : MonoBehaviour
@@ -15,7 +14,7 @@ public class ScrollingObject : MonoBehaviour
     void Update()
     {
         if (GameManager.instance.isDead) { return; }
-
+        if (GameManager.instance.isGameClear) { return; }
         else
         {
             float xInput = Input.GetAxis("Horizontal");

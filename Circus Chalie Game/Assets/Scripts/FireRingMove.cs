@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class FireRingMove : MonoBehaviour
 {
-    public float speed = 8f;
-
     void Start()
     {
         
@@ -13,9 +11,9 @@ public class FireRingMove : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.isGameOver == false)
+        if (GameManager.instance.isGameOver == false && GameManager.instance.isGameClear == false)
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            transform.Translate(Vector3.left * GameManager.instance.speed * Time.deltaTime);
         }
     }
 }

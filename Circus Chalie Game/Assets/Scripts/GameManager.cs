@@ -8,21 +8,26 @@ using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    public AudioClip BonusClip;
+    public AudioClip HitClip;
+    public AudioClip HitMusicClip;
+    public AudioClip ClearClip;
+    public Text TimeText;
+    public Text ScoreText;
+    public GameObject gameoverUi;
+    public GameObject gameclearUi;
     public bool isGameOver = false;
+    public bool isGameClear = false;
     public bool isGrounded = false;
     public bool isDead = false;
     public bool max_loop = false;
     public bool wall = false;
     public bool fire_type_check = false;
-    public int loop_count = 0;
+    public int loop_count = default;
     public int fire_type = 0;
-    public AudioClip BonusClip;
-    public AudioClip HitClip;
-    public AudioClip HitMusicClip;
-    public Text TimeText;
-    public Text ScoreText;
-    public GameObject gameoverUi;
+    public float spawn_cooltime = default;
+    public float speed = default;
+    public int step = default;
 
     private AudioSource GameAudio = default;
     private float game_time = 0;
@@ -33,6 +38,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        loop_count = 0;
+        speed = 3f;
+        spawn_cooltime = 3f;
+        step = 1;
+
         if (instance.isValid() == false)
         {
             instance = this;
@@ -52,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (isGameOver == false)
+        if (isGameOver == false && isGameClear == false)
         {
             game_time += Time.deltaTime;
             if (game_time >= check_time)
@@ -73,15 +83,27 @@ public class GameManager : MonoBehaviour
         {
             GFunc.LoadScene(GFunc.GetActiveSceneName());
         }
+        else if (isGameClear == true && Input.GetKeyDown(KeyCode.R))
+        {
+            GFunc.LoadScene(GFunc.GetActiveSceneName());
+        }
+    }
+
+    public void OnPlayerClear()
+    {
+        GameAudio.clip = ClearClip;
+        GameAudio.Play();
+        GameAudio.loop = true;
+        gameclearUi.SetActive(true);
     }
 
     public void OnPlayerDead()
     {
         isGameOver = true;
-        //gameoverUi.SetActive(true);
         GameAudio.clip = HitClip;
         GameAudio.Play();
-        Invoke("HitMusic", 1f);
+        Invoke("HitMusic", 0.5f);
+        gameoverUi.SetActive(true);
     }
 
     public void FireType()

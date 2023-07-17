@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.PackageManager;
 using UnityEngine.SceneManagement;
 
 public static partial class GFunc

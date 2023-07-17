@@ -18,5 +18,9 @@ public class CharlieAnimation : MonoBehaviour
         {
             animator.SetTrigger("Die");
         }
+        if (GameManager.instance.isGameClear == true)
+        {
+            animator.SetTrigger("Clear");
+        }
     }
 }

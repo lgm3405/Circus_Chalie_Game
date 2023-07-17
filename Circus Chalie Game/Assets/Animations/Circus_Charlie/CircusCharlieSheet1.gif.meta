@@ -717,7 +717,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charlie_Right_Win_3
+      name: Charlie_Clear_1
       rect:
         serializedVersion: 2
         x: 202
@@ -738,7 +738,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Charlie_Right_Win_4
+      name: Charlie_Clear_2
       rect:
         serializedVersion: 2
         x: 219
@@ -1737,6 +1737,8 @@ TextureImporter:
     nameFileIdTable:
       Brazier_1: 1050582976
       Brazier_2: -347473171
+      Charlie_Clear_1: 1762871343
+      Charlie_Clear_2: 952011555
       Charlie_Hit: -636641772
       Charlie_Left_Hit: 668025649
       Charlie_Left_Jump_1: 1622998752
@@ -1763,8 +1765,6 @@ TextureImporter:
       Charlie_Right_Walk_2: -1502261216
       Charlie_Right_Walk_3: -573228430
       Charlie_Right_Walk_4: -1087514868
-      Charlie_Right_Win_3: 1762871343
-      Charlie_Right_Win_4: 952011555
       CircusCharlieSheet1_0: -1444850074
       CircusCharlieSheet1_1: -459003450
       CircusCharlieSheet1_14: 1492027678
